@@ -138,13 +138,19 @@ python pipeline/step1_preprocess.py
  ```
 
 ### Step 2: Physicochemical filtering
+```bash
 python pipeline/step2_physicochemical_filter.py
+ ```
 
 ### Step 3: Feature extraction
+```bash
 python pipeline/step3_feature_extraction.py
+ ```
 
 ### Step 4: Candidate ranking
+```bash
 python pipeline/step4_ranking.py
+ ```
 
 ---
 
