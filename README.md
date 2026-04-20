@@ -47,8 +47,8 @@ The GCT-AVP framework consists of three modules:
 ---
 
 ## Repository structure
+```
 GCT-AVP-framework/
-│
 ├── data/
 │ ├── example_sequences.csv
 │ └── processed_features.csv
@@ -57,32 +57,28 @@ GCT-AVP-framework/
 │ ├── step1_preprocess.py
 │ ├── step2_physicochemical_filter.py
 │ ├── step3_feature_extraction.py
-│ ├── step4_ranking.py
+│ └── step4_ranking.py
 │
 ├── generative/
-│ ├── sequence_generation.py
+│ └── sequence_generation.py
 │
 ├── selection/
 │ ├── constraint_filtering.py
-│ ├── cytotoxicity_evaluation.py
+│ └── cytotoxicity_evaluation.py
 │
 ├── evaluation/
 │ ├── target_scoring.py
-│ ├── multi_objective_ranking.py
+│ └── multi_objective_ranking.py
 │
 ├── results/
 │ ├── filtered_sequences.csv
 │ └── prioritized_candidates.csv
 │
-├── docs/
-│ ├── pipeline_overview.md
-│ ├── reproducibility.md
-│
 ├── environment.yml
+├── requirements.txt
 ├── LICENSE
 └── README.md
-
----
+```
 
 ## Getting Started
 
