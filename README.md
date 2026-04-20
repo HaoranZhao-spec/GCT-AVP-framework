@@ -103,11 +103,13 @@ cd GCT-AVP-framework
  ```
 
 2. **Create a Conda Environment** 
+ ```bash
 conda create --name gct-avp python=3.11
 conda activate gct-avp
    ```
 
 3. **Install dependencies**  
+ ```bash
 pip install -r requirements.txt
    ```
 
