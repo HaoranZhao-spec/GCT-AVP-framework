@@ -31,7 +31,7 @@ Experimental validation and external prediction tools are described in the manus
 The GCT-AVP framework consists of three modules:
 
 ### 1. Generative exploration
-- External generative models (e.g., MSA-informed diffusion models)
+- Evodiff-MSA_OA_DM_MAXSUB
 - Large-scale sequence space exploration
 
 ### 2. Constraint-driven selection
