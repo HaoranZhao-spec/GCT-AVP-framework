@@ -6,9 +6,6 @@
 
 GCT-AVP is a **hierarchical multi-objective computational framework** for de novo discovery of orally active antiviral peptides (AVPs). It integrates **generative sequence exploration**, **biophysical constraint filtering**, and **target-specific structural prioritization** to solve the core translation gap in peptide drug design: balancing antiviral potency, host safety, and physiological stability.
 
-This repository provides the **fully reproducible core pipeline** of the GCT-AVP framework, as described in our published study:
-> Multi-objective generative design of orally active antiviral peptides with large-animal validation (npj Digital Medicine)
-
 ---
 
 ## Framework architecture
