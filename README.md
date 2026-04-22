@@ -1,84 +1,77 @@
 # GCT-AVP framework  
-A Generative–Constraint–Targeted framework for antiviral peptide discovery
-
+**A Generative–Constraint–Targeted Framework for Orally Active Antiviral Peptide Discovery**
 ---
 
 ## Overview
 
-GCT-AVP is a hierarchical computational framework for antiviral peptide (AVP) discovery, integrating generative exploration, multi-constraint virtual screening, and target-specific prioritization.
+GCT-AVP is a **hierarchical multi-objective computational framework** for de novo discovery of orally active antiviral peptides (AVPs). It integrates **generative sequence exploration**, **biophysical constraint filtering**, and **target-specific structural prioritization** to solve the core translation gap in peptide drug design: balancing antiviral potency, host safety, and physiological stability.
 
-The framework is designed to efficiently navigate large peptide sequence spaces while enforcing biologically relevant constraints, enabling the identification of candidate peptides with favorable antiviral activity and safety profiles.
-
-This repository provides a **reproducible implementation of the core computational pipeline** described in our study.
-
----
-
-## Correspondence to manuscript
-
-This repository reproduces key computational components reported in the manuscript, including:
-
-- Sequence preprocessing and filtering  
-- Physicochemical characterization  
-- Multi-parameter candidate ranking  
-- Candidate diversity analysis  
-
-Experimental validation and external prediction tools are described in the manuscript.
+This repository provides the **fully reproducible core pipeline** of the GCT-AVP framework, as described in our published study:
+> Multi-objective generative design of orally active antiviral peptides with large-animal validation (npj Digital Medicine)
 
 ---
 
 ## Framework architecture
 
-The GCT-AVP framework consists of three modules:
+Fully aligned with the manuscript, the framework sequentially narrows large peptide sequence spaces into high-confidence candidates:
 
-### 1. Generative exploration
-- Evodiff-MSA_OA_DM_MAXSUB
-- Large-scale sequence space exploration
+### 1. Generative Exploration
+- MSA-informed diffusion model (Evodiff-MSA_OA_DM_MAXSUB)
+- Large-scale de novo sequence generation (15–25 amino acids)
+- Evolutionary conservation-guided sequence sampling
 
-### 2. Constraint-driven selection
-- Physicochemical filtering (charge, hydrophobicity, stability)
-- Functional prediction (external tools)
-- Cytotoxicity evaluation (external tools)
+### 2. Constraint-Driven Selection
+- Physicochemical filtering (net charge, hydrophobicity, stability, amphipathicity)
+- Antiviral activity prediction (Stack-AVP)
+- Cytotoxicity risk elimination (ToxinPred3.0)
+- Multi-constraint sequence space compression
 
-### 3. Target-specific evaluation
-- Target-aware scoring
-- Structure-based assessment (external tools)
-- Multi-objective prioritization
+### 3. Target-Specific Evaluation
+- PEDV Spike protein-targeted activity scoring (LSTM regression)
+- De novo peptide structure prediction (PEP-FOLD4)
+- Molecular docking & binding stability assessment (HDOCK)
+- Multi-objective candidate prioritization
 
 ---
 
 ## Repository structure
 ```
 GCT-AVP-framework/
-├── data/
-│ ├── example_sequences.csv
-│ └── processed_features.csv
+├── data/ 
+│ ├── example_sequences.csv # Sample peptide sequences
+│ └── processed_features.csv # Precomputed physicochemical features
 │
-├── pipeline/
-│ ├── step1_preprocess.py
-│ ├── step2_physicochemical_filter.py
-│ ├── step3_feature_extraction.py
-│ └── step4_ranking.py
+├── pipeline/ 
+│ ├── step1_preprocess.py 
+│ ├── step2_physicochemical_filter.py 
+│ ├── step3_feature_extraction.py 
+│ └── step4_ranking.py 
 │
-├── generative/
-│ └── sequence_generation.py
+├── generative/ 
+│ └── sequence_generation.py 
 │
-├── selection/
-│ ├── constraint_filtering.py
-│ └── cytotoxicity_evaluation.py
+├── selection/ 
+│ ├── constraint_filtering.py 
+│ └── cytotoxicity_evaluation.py 
 │
-├── evaluation/
-│ ├── target_scoring.py
-│ └── multi_objective_ranking.py
+├── evaluation/ 
+│ ├── target_scoring.py 
+│ └── multi_objective_ranking.py 
 │
-├── results/
-│ ├── filtered_sequences.csv
-│ └── prioritized_candidates.csv
+├── results/ 
+│ ├── filtered_sequences.csv 
+│ └── prioritized_candidates.csv 
 │
-├── environment.yml
-├── requirements.txt
-├── LICENSE
-└── README.md
+├── docs/ 
+│ └── reproducibility.md 
+│
+├── environment.yml 
+├── requirements.txt 
+├── LICENSE 
+└── README.md 
 ```
+
+---
 
 ## Getting Started
 
@@ -87,9 +80,9 @@ GCT-AVP-framework/
 Welcome to the GCT-AVP framework. This guide describes how to set up the environment and run the reproducible components of the pipeline.
 
 ### Prerequisites
-
-- Python 3.11  
-- Conda (recommended)  
+- Python 3.11
+- Conda (recommended for environment management)
+- CPU/GPU (GPU recommended for generative modeling)
 
 Required libraries:`numpy`, `pandas`, `tqdm`, `scikit-learn`, `xgboost`.
 
@@ -104,7 +97,7 @@ cd GCT-AVP-framework
 
 2. **Create a Conda Environment** 
  ```bash
-conda create --name gct-avp python=3.11
+conda create -n gct-avp python=3.11
 conda activate gct-avp
    ```
 
@@ -123,12 +116,12 @@ EvoDiff requires PyTorch along with additional libraries. The following example 
 
 ## Pipeline execution
 
-The GCT-AVP framework operates as a sequential filtering and prioritization pipeline.
+Run the full GCT-AVP filtering pipeline sequentially:
 
 ### Input
 
 A CSV file containing peptide sequences:
---input_csv_file <path_to_input_file> 
+CSV file with peptide sequences (data/example_sequences.csv)
 
 ---
 
@@ -153,6 +146,10 @@ python pipeline/step3_feature_extraction.py
 python pipeline/step4_ranking.py
  ```
 
+### Output
+
+Top-ranked candidates (results/prioritized_candidates.csv)
+
 ---
 
 ## Framework logic
@@ -174,17 +171,13 @@ These components were accessed via publicly available servers or standalone impl
 - Structure prediction (PEP-FOLD4)  
 - Molecular docking (HDOCK server)  
 
-These tools were accessed via their official web servers or standalone implementations as described in the manuscript.
-
-This repository focuses on the **reproducible core pipeline** independent of these external dependencies.
+This repository contains the self-contained core pipeline independent of external server dependencies.
 
 ---
 
 ## Reproducibility
 
-All scripts provided in this repository are sufficient to reproduce the computational filtering and ranking workflow described in the study.
-
-Detailed step-by-step instructions are available in:
+All scripts and parameters are fully reproducible. Detailed step-by-step instructions for reproducing the manuscript’s computational results are provided in:
 docs/reproducibility.md
 
 ## Design philosophy
