@@ -4,13 +4,15 @@
 
 ## Overview
 
-GCT-AVP is a **hierarchical multi-objective computational framework** for de novo discovery of orally active antiviral peptides (AVPs). It integrates **generative sequence exploration**, **biophysical constraint filtering**, and **target-specific structural prioritization** to solve the core translation gap in peptide drug design: balancing antiviral potency, host safety, and physiological stability.
+GCT-AVP is a hierarchical, multi-objective computational framework for the de novo discovery of orally active antiviral peptides (AVPs). The framework is designed to address a central challenge in peptide therapeutics: the simultaneous optimization of antiviral efficacy, host safety, and physiological stability.
+
+By integrating generative modeling, constraint-driven filtering, and target-specific structural evaluation, GCT-AVP enables systematic navigation of large peptide sequence spaces toward experimentally viable candidates.
 
 ---
 
 ## Framework architecture
 
-Fully aligned with the manuscript, the framework sequentially narrows large peptide sequence spaces into high-confidence candidates:
+The GCT-AVP framework operates as a sequential constraint-based pipeline, progressively refining candidate sequences:
 
 ### 1. Generative Exploration
 - MSA-informed diffusion model (Evodiff-MSA_OA_DM_MAXSUB)
@@ -35,29 +37,35 @@ Fully aligned with the manuscript, the framework sequentially narrows large pept
 ```
 GCT-AVP-framework/
 ├── data/ 
-│ ├── example_sequences.csv # Sample peptide sequences
-│ └── processed_features.csv # Precomputed physicochemical features
+│ ├── example_sequences.csv 
+│ └── processed_features.csv 
 │
 ├── pipeline/ 
-│ ├── step1_preprocess.py 
-│ ├── step2_physicochemical_filter.py 
-│ ├── step3_feature_extraction.py 
-│ └── step4_ranking.py 
+│ ├── step1_Generative exploration 
+│ ├── step2_Physicochemical filter
+│ ├── step3_Antiviral activity classification 
+│ ├── step4_Cytotoxicity prediction 
+│ └── step5_Target-oriented potency score
 │
 ├── generative/ 
-│ └── sequence_generation.py 
+│ └── msa_diffusion_generation.py 
 │
 ├── selection/ 
 │ ├── constraint_filtering.py 
-│ └── cytotoxicity_evaluation.py 
+│ ├── Antiviral activity classification
+│        ├── input_sequences.csv
+│        ├── output_predictions.csv
+│        └──  protocol.md
+│ ├── Cytotoxicity prediction
+│        ├── input_sequences.csv
+│        ├── output_toxicity.csv
+│        └──  protocol.md
 │
 ├── evaluation/ 
-│ ├── target_scoring.py 
-│ └── multi_objective_ranking.py 
+│ └──scorer.py 
 │
 ├── results/ 
-│ ├── filtered_sequences.csv 
-│ └── prioritized_candidates.csv 
+│ └──  final candidate.csv 
 │
 ├── docs/ 
 │ └── reproducibility.md 
@@ -122,26 +130,26 @@ CSV file with peptide sequences (data/example_sequences.csv)
 
 ---
 
-### Step 1: Sequence preprocessing
+### Step 1: Generative exploration
 
 ```bash
-python pipeline/step1_preprocess.py
+python AVP_Generative_exploration/msa_diffusion_generation.py
  ```
 
 ### Step 2: Physicochemical filtering
 ```bash
-python pipeline/step2_physicochemical_filter.py
+python Physicochemical_filtering/Physicochemical filtering.py
  ```
 
-### Step 3: Feature extraction
+### Step 3: Antiviral_activity_classification
+
+### Step 4: Cytotoxicity_prediction
+
+### Step 5: Target_oriented_potency_scoring
 ```bash
-python pipeline/step3_feature_extraction.py
+python Target_oriented_potency_scoring/scorer.py
  ```
 
-### Step 4: Candidate ranking
-```bash
-python pipeline/step4_ranking.py
- ```
 
 ### Output
 
