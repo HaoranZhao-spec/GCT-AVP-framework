@@ -28,7 +28,8 @@ Sequential constraint‑based multi‑step pipeline:
 ### 3. Target‑Specific Evaluation
 Multi‑strain enveloped virus potency scoring (ESM‑2‑Ridge derived composite score), output ranked candidate list.
 
-## Repository structure```
+## Repository structure
+```
 GCT-AVP-framework/
 │
 ├── pipeline/ 
