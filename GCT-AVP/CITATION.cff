@@ -1,0 +1,9 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as:"
+authors:
+  - family-names: Zhao
+    given-names: Hanran
+title: "GCT‑AVP framework: A Generative–Constraint–Targeted Framework for Broad‑Spectrum Antiviral Peptide Discovery"
+version: 1.0.0
+date-released: 2026‑XX‑XX
+license: MIT
